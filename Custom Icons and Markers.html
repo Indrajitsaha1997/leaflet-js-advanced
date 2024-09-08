@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Marker Icons</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Initialize the map
+    const map = L.map('map').setView([2, 100], 1);
+
+    // Add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Custom icon
+    const customIcon = L.icon({
+      iconUrl: 'https://d2gjqh9j26unp0.cloudfront.net/profilepic/1e2e02e8903d47e15b04d871f781d5c1', // Replace with your icon URL
+      iconSize: [32, 32], // Size of the icon
+      iconAnchor: [16, 32], // Point of the icon which will correspond to marker's location
+      popupAnchor: [0, -32] // Point from which the popup should open relative to the iconAnchor
+    });
+
+    // Add marker with custom icon
+    const marker = L.marker([22.5378304, 88.3720192], { icon: customIcon }).addTo(map);
+    marker.bindPopup('<b>Custom Icon</b><br>This is a custom marker icon.').openPopup();
+  </script>
+
+</body>
+
+</html>
